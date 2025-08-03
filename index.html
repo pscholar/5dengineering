@@ -30,7 +30,17 @@
             --header-bg: rgba(255, 255, 255, 0.95);
         }
 
-        [data-theme="dark"] {
+        /* Dark mode as default */
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            
+            /* Dark mode colors as default */
             --bg-primary: #111827;
             --bg-secondary: #1f2937;
             --text-primary: #f9fafb;
@@ -38,7 +48,17 @@
             --border-color: rgba(255, 255, 255, 0.1);
             --card-bg: #374151;
             --header-bg: rgba(17, 24, 39, 0.95);
-            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         body {
@@ -155,14 +175,14 @@
             transform: rotate(180deg);
         }
 
-        [data-theme="dark"] .theme-toggle .moon-icon {
-            opacity: 0;
-            transform: rotate(-180deg);
-        }
-
-        [data-theme="dark"] .theme-toggle .sun-icon {
+        [data-theme="light"] .theme-toggle .moon-icon {
             opacity: 1;
             transform: rotate(0deg);
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            opacity: 0;
+            transform: rotate(180deg);
         }
 
         .logo-container {
@@ -581,47 +601,51 @@
         <div class="nav-container">
             <div class="logo-container">
                 <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Modern house logo with 5D elements -->
+                    <!-- Modern house logo with better contrast -->
                     <defs>
                         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#1e3a8a"/>
+                            <stop offset="0%" style="stop-color:#10b981"/>
                             <stop offset="50%" style="stop-color:#3b82f6"/>
-                            <stop offset="100%" style="stop-color:#10b981"/>
+                            <stop offset="100%" style="stop-color:#1e3a8a"/>
+                        </linearGradient>
+                        <linearGradient id="roofGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f59e0b"/>
+                            <stop offset="100%" style="stop-color:#ea580c"/>
                         </linearGradient>
                         <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
                             <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
                         </filter>
                     </defs>
                     
-                    <!-- House base -->
-                    <rect x="20" y="40" width="60" height="40" fill="url(#logoGradient)" rx="4" filter="url(#shadow)"/>
+                    <!-- House base with better contrast -->
+                    <rect x="20" y="40" width="60" height="40" fill="url(#logoGradient)" rx="4" filter="url(#shadow)" stroke="#ffffff" stroke-width="1" opacity="0.9"/>
                     
-                    <!-- Roof -->
-                    <path d="M15 40 L50 15 L85 40 Z" fill="#f59e0b" filter="url(#shadow)"/>
+                    <!-- Roof with gradient -->
+                    <path d="M15 40 L50 15 L85 40 Z" fill="url(#roofGradient)" filter="url(#shadow)" stroke="#ffffff" stroke-width="1"/>
                     
-                    <!-- Door -->
-                    <rect x="42" y="60" width="16" height="20" fill="#1f2937" rx="2"/>
+                    <!-- Door with better visibility -->
+                    <rect x="42" y="60" width="16" height="20" fill="#1f2937" rx="2" stroke="#ffffff" stroke-width="0.5"/>
                     <circle cx="54" cy="70" r="1.5" fill="#f59e0b"/>
                     
-                    <!-- Windows -->
-                    <rect x="25" y="50" width="12" height="10" fill="#3b82f6" rx="2"/>
-                    <rect x="63" y="50" width="12" height="10" fill="#3b82f6" rx="2"/>
+                    <!-- Windows with white frames -->
+                    <rect x="25" y="50" width="12" height="10" fill="#1e3a8a" rx="2" stroke="#ffffff" stroke-width="1"/>
+                    <rect x="63" y="50" width="12" height="10" fill="#1e3a8a" rx="2" stroke="#ffffff" stroke-width="1"/>
                     <line x1="31" y1="50" x2="31" y2="60" stroke="white" stroke-width="1"/>
                     <line x1="25" y1="55" x2="37" y2="55" stroke="white" stroke-width="1"/>
                     <line x1="69" y1="50" x2="69" y2="60" stroke="white" stroke-width="1"/>
                     <line x1="63" y1="55" x2="75" y2="55" stroke="white" stroke-width="1"/>
                     
-                    <!-- 5D Text -->
-                    <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="url(#logoGradient)">5D</text>
+                    <!-- 5D Text with better visibility -->
+                    <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f59e0b" stroke="#1f2937" stroke-width="0.5">5D</text>
                     
                     <!-- Floating elements representing dimensions -->
-                    <circle cx="10" cy="25" r="2" fill="#10b981" opacity="0.7">
+                    <circle cx="10" cy="25" r="2" fill="#10b981" opacity="0.8">
                         <animate attributeName="cy" values="25;20;25" dur="2s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="90" cy="30" r="2" fill="#f59e0b" opacity="0.7">
+                    <circle cx="90" cy="30" r="2" fill="#f59e0b" opacity="0.8">
                         <animate attributeName="cy" values="30;25;30" dur="2.5s" repeatCount="indefinite"/>
                     </circle>
-                    <circle cx="15" cy="70" r="2" fill="#3b82f6" opacity="0.7">
+                    <circle cx="15" cy="70" r="2" fill="#3b82f6" opacity="0.8">
                         <animate attributeName="cy" values="70;65;70" dur="3s" repeatCount="indefinite"/>
                     </circle>
                 </svg>
@@ -804,15 +828,26 @@
         const html = document.documentElement;
         
         // Check for saved theme preference or default to dark mode
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        html.setAttribute('data-theme', currentTheme);
+        const savedTheme = localStorage.getItem('theme');
+        const currentTheme = savedTheme || 'dark';
+        
+        // Apply theme
+        if (currentTheme === 'light') {
+            html.setAttribute('data-theme', 'light');
+        } else {
+            html.removeAttribute('data-theme'); // Default to dark
+        }
         
         themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const isLight = html.getAttribute('data-theme') === 'light';
             
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            if (isLight) {
+                html.removeAttribute('data-theme'); // Switch to dark
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light'); // Switch to light
+                localStorage.setItem('theme', 'light');
+            }
         });
 
         // Smooth scrolling for navigation links
@@ -850,13 +885,13 @@
         // Header background on scroll
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
-            const currentTheme = html.getAttribute('data-theme');
+            const isLight = html.getAttribute('data-theme') === 'light';
             
             if (window.scrollY > 100) {
-                if (currentTheme === 'dark') {
-                    header.style.background = 'rgba(17, 24, 39, 0.98)';
-                } else {
+                if (isLight) {
                     header.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    header.style.background = 'rgba(17, 24, 39, 0.98)';
                 }
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
             } else {
