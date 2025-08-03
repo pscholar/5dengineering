@@ -903,4 +903,19 @@
         // Add stagger animation to service cards
         const serviceCards = document.querySelectorAll('.service-card');
         serviceCards.forEach((card, index) => {
-            card.style.animationDelay = `${index *
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger animations for elements in view
+            const elementsToAnimate = document.querySelectorAll('.animate-fade-in, .scroll-animate');
+            elementsToAnimate.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
