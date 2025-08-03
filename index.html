@@ -493,27 +493,24 @@
         }
 
         .credentials {
-            background: var(--gradient);
-            color: white !important;
+            background: var(--card-bg);
+            color: var(--text-primary);
             padding: 2rem;
             border-radius: 20px;
             margin-top: 2rem;
             text-align: center;
+            border: 2px solid var(--secondary);
         }
 
         .credentials h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: white !important;
+            color: var(--secondary);
         }
 
         .credentials p {
-            color: white !important;
-            opacity: 0.95;
-        }
-
-        .credentials * {
-            color: white !important;
+            color: var(--text-primary);
+            opacity: 0.9;
         }
 
         /* Contact Section */
@@ -964,12 +961,11 @@
         const savedTheme = localStorage.getItem('theme');
         const currentTheme = savedTheme || 'dark';
         
-        // Apply theme
+        // Apply theme - dark is default (no attribute), light needs attribute
         if (currentTheme === 'light') {
             html.setAttribute('data-theme', 'light');
-        } else {
-            html.removeAttribute('data-theme'); // Default to dark
         }
+        // No else needed - dark mode is default without any attribute
         
         themeToggle.addEventListener('click', () => {
             const isLight = html.getAttribute('data-theme') === 'light';
