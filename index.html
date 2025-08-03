@@ -9,7 +9,1050 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5D Engineering (U) Ltd - Build Smart with Eng. Ariho Obed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Light mode colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            
+            /* Dark mode colors as default */
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: #374151;
+            --header-bg: rgba(17, 24, 39, 0.95);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: var(--bg-secondary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Smooth scrolling and animations */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle .moon-icon {
+            position: absolute;
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .theme-toggle .sun-icon {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        [data-theme="light"] .theme-toggle .moon-icon {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        [data-theme="light"] .theme-toggle .sun-icon {
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .brand-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #374151 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .hero {
+            background: var(--gradient);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        [data-theme="light"] .hero::before {
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-60px) translateY(-60px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 480px) {
+            .cta-buttons {
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+                min-width: 120px;
+                flex: 1;
+            }
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-width: 140px;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3);
+        }
+
+        /* Floating elements */
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 2.5rem;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        [data-theme="light"] .floating-icon {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+        .floating-icon:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 1rem;
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            fill: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 1rem;
+            background: var(--bg-primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .credentials {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .credentials h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 1rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        [data-theme="light"] .contact {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1rem;
+            fill: var(--secondary);
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+        }
+
+        .contact-item a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--card-bg);
+            color: var(--primary);
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                text-align: left;
+            }
+            
+            .contact-content {
+                text-align: left;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Modern house logo with better contrast -->
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#10b981"/>
+                            <stop offset="50%" style="stop-color:#3b82f6"/>
+                            <stop offset="100%" style="stop-color:#1e3a8a"/>
+                        </linearGradient>
+                        <linearGradient id="roofGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f59e0b"/>
+                            <stop offset="100%" style="stop-color:#ea580c"/>
+                        </linearGradient>
+                        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    
+                    <!-- House base with better contrast -->
+                    <rect x="20" y="40" width="60" height="40" fill="url(#logoGradient)" rx="4" filter="url(#shadow)" stroke="#ffffff" stroke-width="1" opacity="0.9"/>
+                    
+                    <!-- Roof with gradient -->
+                    <path d="M15 40 L50 15 L85 40 Z" fill="url(#roofGradient)" filter="url(#shadow)" stroke="#ffffff" stroke-width="1"/>
+                    
+                    <!-- Door with better visibility -->
+                    <rect x="42" y="60" width="16" height="20" fill="#1f2937" rx="2" stroke="#ffffff" stroke-width="0.5"/>
+                    <circle cx="54" cy="70" r="1.5" fill="#f59e0b"/>
+                    
+                    <!-- Windows with white frames -->
+                    <rect x="25" y="50" width="12" height="10" fill="#1e3a8a" rx="2" stroke="#ffffff" stroke-width="1"/>
+                    <rect x="63" y="50" width="12" height="10" fill="#1e3a8a" rx="2" stroke="#ffffff" stroke-width="1"/>
+                    <line x1="31" y1="50" x2="31" y2="60" stroke="white" stroke-width="1"/>
+                    <line x1="25" y1="55" x2="37" y2="55" stroke="white" stroke-width="1"/>
+                    <line x1="69" y1="50" x2="69" y2="60" stroke="white" stroke-width="1"/>
+                    <line x1="63" y1="55" x2="75" y2="55" stroke="white" stroke-width="1"/>
+                    
+                    <!-- 5D Text with better visibility -->
+                    <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f59e0b" stroke="#1f2937" stroke-width="0.5">5D</text>
+                    
+                    <!-- Floating elements representing dimensions -->
+                    <circle cx="10" cy="25" r="2" fill="#10b981" opacity="0.8">
+                        <animate attributeName="cy" values="25;20;25" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="90" cy="30" r="2" fill="#f59e0b" opacity="0.8">
+                        <animate attributeName="cy" values="30;25;30" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="15" cy="70" r="2" fill="#3b82f6" opacity="0.8">
+                        <animate attributeName="cy" values="70;65;70" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+                <div class="brand-text">5D Engineering</div>
+            </div>
+            <div class="nav-right">
+                <nav class="nav-menu">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-icon">🏗️</div>
+        <div class="floating-icon">📐</div>
+        <div class="floating-icon">🏠</div>
+        
+        <div class="hero-content animate-fade-in">
+            <h1>5D Engineering (U) Ltd</h1>
+            <p class="tagline">"Build Smart with Eng. Ariho Obed"</p>
+            <p>Professional Civil Engineering Services | House Plan Design | Construction Excellence</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">Our Services</a>
+                <a href="tel:+256783648909" class="btn btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card scroll-animate">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <rect x="10" y="20" width="80" height="60" fill="none" stroke="currentColor" stroke-width="3" rx="5"/>
+                        <line x1="10" y1="35" x2="90" y2="35" stroke="currentColor" stroke-width="2"/>
+                        <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" stroke-width="2"/>
+                        <line x1="10" y1="65" x2="90" y2="65" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="25" cy="27.5" r="3" fill="currentColor"/>
+                        <circle cx="40" cy="27.5" r="3" fill="currentColor"/>
+                    </svg>
+                    <h3>House Plan Design</h3>
+                    <p>Professional architectural drawings and house plans using AutoCAD and Revit. We create detailed, precise plans that bring your vision to life.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <rect x="20" y="40" width="60" height="40" fill="none" stroke="currentColor" stroke-width="3" rx="3"/>
+                        <path d="M15 40 L50 15 L85 40" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <rect x="42" y="60" width="16" height="20" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <rect x="25" y="50" width="12" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <rect x="63" y="50" width="12" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <h3>Site Supervision</h3>
+                    <p>Expert construction supervision ensuring quality control, safety compliance, and adherence to architectural specifications throughout your project.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <rect x="15" y="25" width="70" height="50" fill="none" stroke="currentColor" stroke-width="3" rx="5"/>
+                        <line x1="25" y1="35" x2="75" y2="35" stroke="currentColor" stroke-width="2"/>
+                        <line x1="25" y1="45" x2="60" y2="45" stroke="currentColor" stroke-width="2"/>
+                        <line x1="25" y1="55" x2="70" y2="55" stroke="currentColor" stroke-width="2"/>
+                        <line x1="25" y1="65" x2="55" y2="65" stroke="currentColor" stroke-width="2"/>
+                        <text x="70" y="50" font-size="12" fill="currentColor">₦</text>
+                    </svg>
+                    <h3>BOQ & Cost Estimates</h3>
+                    <p>Detailed Bill of Quantities and accurate cost estimates to help you plan your budget effectively and avoid project overruns.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <rect x="10" y="60" width="20" height="25" fill="currentColor"/>
+                        <rect x="35" y="45" width="20" height="40" fill="currentColor"/>
+                        <rect x="60" y="30" width="20" height="55" fill="currentColor"/>
+                        <circle cx="20" cy="25" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="45" cy="25" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="70" cy="25" r="8" fill="none" stroke="currentColor" stroke-width="3"/>
+                    </svg>
+                    <h3>Construction Materials Supply</h3>
+                    <p>Quality construction materials sourcing and supply, ensuring you get the best materials at competitive prices for your project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about scroll-animate">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Meet Eng. Ariho Obed</h2>
+                    <p>With extensive experience in civil engineering and a passion for creating exceptional structures, Eng. Ariho Obed leads 5D Engineering (U) Ltd with expertise and dedication.</p>
+                    <p>Our approach combines traditional engineering principles with modern technology to deliver projects that exceed expectations. We believe in building smart, sustainable, and cost-effective solutions.</p>
+                    <p>Located in the heart of Kampala, we serve clients across Uganda with professional engineering services that transform visions into reality.</p>
+                </div>
+                <div class="credentials">
+                    <h3>Professional Credentials</h3>
+                    <p><strong>Bachelor's Degree in Civil Engineering</strong><br>Makerere University</p>
+                    <p style="margin-top: 1rem; font-style: italic;">"Build Smart with Eng. Ariho Obed"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content scroll-animate">
+                <div>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to start your project? Contact us today for professional engineering services.</p>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="4"/>
+                            <path d="M30 35 L35 30 L65 30 L70 35 L70 65 L65 70 L35 70 L30 65 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <line x1="30" y1="35" x2="50" y2="50" stroke="currentColor" stroke-width="2"/>
+                            <line x1="70" y1="35" x2="50" y2="50" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <h3>Email</h3>
+                        <p><a href="mailto:arihoobed8@gmail.com">arihoobed8@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="4"/>
+                            <path d="M35 30 Q35 25 40 25 L60 25 Q65 25 65 30 L65 45 Q65 50 60 50 L55 50 L55 65 Q55 70 50 70 L45 70 Q40 70 40 65 L40 50 L35 50 Q30 50 30 45 L30 30 Q30 25 35 25" fill="none" stroke="currentColor" stroke-width="3"/>
+                        </svg>
+                        <h3>Phone</h3>
+                        <p><a href="tel:+256783648909">+256 783 648 909</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="4"/>
+                            <circle cx="50" cy="40" r="8" fill="currentColor"/>
+                            <path d="M50 48 Q30 65 30 75 Q30 80 35 80 L65 80 Q70 80 70 75 Q70 65 50 48" fill="currentColor"/>
+                        </svg>
+                        <h3>Location</h3>
+                        <p>Kampala, Uganda</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 5D Engineering (U) Ltd. All rights reserved. | Eng. Ariho Obed - Professional Civil Engineering Services</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu when clicking outside (on overlay)
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to dark mode
+        const savedTheme = localStorage.getItem('theme');
+        const currentTheme = savedTheme || 'dark';
+        
+        // Apply theme
+        if (currentTheme === 'light') {
+            html.setAttribute('data-theme', 'light');
+        } else {
+            html.removeAttribute('data-theme'); // Default to dark
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const isLight = html.getAttribute('data-theme') === 'light';
+            
+            if (isLight) {
+                html.removeAttribute('data-theme'); // Switch to dark
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light'); // Switch to light
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const isLight = html.getAttribute('data-theme') === 'light';
+            
+            if (window.scrollY > 100) {
+                if (isLight) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    header.style.background = 'rgba(17, 24, 39, 0.98)';
+                }
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'var(--header-bg)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Add stagger animation to service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger animations for elements in view
+            const elementsToAnimate = document.querySelectorAll('.animate-fade-in, .scroll-animate');
+            elementsToAnimate.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate');
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
 
         :root {
             --primary: #1e3a8a;
